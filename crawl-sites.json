@@ -1,17 +1,298 @@
 {
   "version": 1,
-  "updated_at": "2026-04-29T00:00:00Z",
+  "updated_at": "2026-08-04T00:30:00Z",
   "sites": [
     {
       "domain": "tuoitre.vn",
       "name": "Tuổi Trẻ",
       "selectors": {
         "title": ".detail-title.article-title",
-        "content": ".detail-content.afcbc-body",
         "excerpt": ".detail-sapo",
+        "content": ".detail-content.afcbc-body",
         "author": ".author-info",
         "date": ".detail-time",
         "exclude": "#InreadPc, [type=\"RelatedNewsBox\"], [type=\"RelatedOneNews\"], .readmore-body-box.d-none"
+      }
+    },
+    {
+      "domain": "baovanhoa.vn",
+      "name": "Báo Văn hóa",
+      "selectors": {
+        "title": "h1.detail__title",
+        "excerpt": ".detail__summary",
+        "content": "#abody",
+        "author": ".detail__author",
+        "date": ".detail__time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".detail__summary, .notification, .detail__related"
+      }
+    },
+    {
+      "domain": "vietnamplus.vn",
+      "name": "VietnamPlus (TTXVN)",
+      "selectors": {
+        "title": "h1.article__title",
+        "excerpt": ".article__sapo",
+        "content": ".article__body",
+        "author": ".article__author, span.cms-author, .article__meta .author",
+        "date": "time.time, .article__meta .time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".article-relate, .box-related-news, .timeline, .article__tag, .article__source"
+      }
+    },
+    {
+      "domain": "baotintuc.vn",
+      "name": "Báo Tin tức (TTXVN)",
+      "selectors": {
+        "title": "h1.detail-title",
+        "excerpt": "h2.sapo",
+        "content": ".contents",
+        "author": ".detail-left .author",
+        "date": ".detail-left .date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".boxdata, .right-bar, .content_bottom"
+      }
+    },
+    {
+      "domain": "daidoanket.vn",
+      "name": "Báo Đại Đoàn Kết",
+      "selectors": {
+        "title": ".article-content > h1",
+        "excerpt": ".article-content__description",
+        "content": "#content_article",
+        "avatar": "meta[property=\"og:image\"]"
+      }
+    },
+    {
+      "domain": "congthuong.vn",
+      "name": "Báo Công Thương",
+      "selectors": {
+        "title": "h1.article-detail-title",
+        "excerpt": ".article-detail-desc",
+        "content": "#articleBody",
+        "author": ".article-detail-author",
+        "date": ".article-date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".bx-cat-title, .hot-news, #social-share"
+      }
+    },
+    {
+      "domain": "baophapluat.vn",
+      "name": "Báo Pháp luật Việt Nam",
+      "selectors": {
+        "title": "#content_article > h1",
+        "excerpt": ".article-content__description",
+        "content": "#content_article > div.prose-lg",
+        "avatar": "meta[property=\"og:image\"]"
+      }
+    },
+    {
+      "domain": "vnexpress.net",
+      "name": "VnExpress",
+      "selectors": {
+        "title": "h1.title-detail",
+        "excerpt": "p.description",
+        "content": "article.fck_detail",
+        "date": "span.date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "article.fck_detail > h1.title-detail, article.fck_detail > p.description, .box_category, .widget_soccer, #InreadPc"
+      }
+    },
+    {
+      "domain": "vietnamnet.vn",
+      "name": "VietNamNet",
+      "selectors": {
+        "title": "h1.content-detail-title",
+        "excerpt": "h2.content-detail-sapo",
+        "content": "#maincontent, .maincontent.main-content",
+        "author": ".article-detail-author__main",
+        "date": ".bread-crumb-detail__time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".ck-cms-insert-neww-group"
+      }
+    },
+    {
+      "domain": "dantri.com.vn",
+      "name": "Báo Dân trí",
+      "selectors": {
+        "title": "main h1",
+        "excerpt": "main article > h2",
+        "content": "#desktop-in-article",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "[id^=\"desktop-in-article-\"]"
+      }
+    },
+    {
+      "domain": "doanhnghiepvn.vn",
+      "name": "Tạp chí Doanh nghiệp Việt Nam",
+      "selectors": {
+        "title": "h1.single-post-title",
+        "excerpt": ".entry-summary",
+        "content": ".single-entry-summary-post-content",
+        "date": ".entry-date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".link-source-wrapper, .sourcelinktop, .related-post, .post-tags"
+      }
+    },
+    {
+      "domain": "vjst.vn",
+      "name": "Tạp chí Khoa học và Công nghệ Việt Nam",
+      "selectors": {
+        "title": ".sc-longform-header-title",
+        "excerpt": ".sc-longform-header-sapo",
+        "content": "article.entry",
+        "author": ".sc-longform-header-author",
+        "date": ".sc-longform-header-date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".sc-longform-header-cate, .sc-longform-header-title, .sc-longform-header-sapo"
+      }
+    },
+    {
+      "domain": "thanhnien.vn",
+      "name": "Báo Thanh Niên",
+      "selectors": {
+        "title": "h1.detail-title",
+        "excerpt": ".detail-sapo",
+        "content": ".detail-content.afcbc-body",
+        "author": ".detail-author",
+        "date": ".detail-time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "#box-detail-related, .detail__related, [type=\"RelatedNewsBox\"], [type=\"RelatedOneNews\"]"
+      }
+    },
+    {
+      "domain": "laodong.vn",
+      "name": "Báo Lao Động",
+      "note": "Selector đã verify trên 3 URL, NHƯNG laodong.vn chặn request đầu bằng JS cookie challenge (D1N) — ArticleCrawlerService::fetchHtml() dùng curl thuần không chạy JS nên crawl sẽ fail ở tầng fetch (báo lỗi 'Không thể trích xuất nội dung', không sinh dữ liệu sai). Bật lại sau khi fetchHtml() hỗ trợ retry kèm cookie. Xem README § Known issues.",
+      "selectors": {
+        "title": "article.detail h1.title",
+        "excerpt": ".chapeau",
+        "content": ".art-content",
+        "author": ".art-authors",
+        "date": "article.detail small.author",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".articles-relatived"
+      }
+    },
+    {
+      "domain": "tienphong.vn",
+      "name": "Báo Tiền Phong",
+      "selectors": {
+        "title": "h1.article__title",
+        "excerpt": ".article__sapo",
+        "content": ".article__body",
+        "author": ".article__author, span.cms-author, .article__meta .author",
+        "date": "time.time, .article__meta .time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".article-relate, .related-news, .article-footer, .article__tag"
+      }
+    },
+    {
+      "domain": "phunuvietnam.vn",
+      "name": "Báo Phụ nữ Việt Nam",
+      "selectors": {
+        "title": "h1.detail-title",
+        "excerpt": ".sapo-detail",
+        "content": ".content-detail.detail-content, .detail-content, .body-content",
+        "author": ".detail-author",
+        "date": ".detail-time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "[type=\"RelatedNewsBox\"], [type=\"RelatedOneNews\"], .detail__related"
+      }
+    },
+    {
+      "domain": "baovephapluat.vn",
+      "name": "Báo Bảo vệ pháp luật",
+      "selectors": {
+        "title": "h1.post-title",
+        "excerpt": ".post-summary",
+        "content": ".post-content .noidung",
+        "author": ".tacgia",
+        "date": ".lbPublishedDate",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".tin-lien-quan, .post-tag, .tin-doc-nhieu-nhat"
+      }
+    },
+    {
+      "domain": "thethaovanhoa.vn",
+      "name": "Báo Thể thao & Văn hóa",
+      "selectors": {
+        "title": "h1.title",
+        "excerpt": ".detail-content > p:first-child",
+        "content": ".detail-content.afcbc-body",
+        "author": "[data-role=\"author\"]",
+        "date": ".date-time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".link-content-footer, .related-news, .box-share, .box-tag, .box-sub-new, .adsbootdetail, [type=\"RelatedNewsBox\"], [type=\"RelatedOneNews\"]"
+      }
+    },
+    {
+      "domain": "lsvn.vn",
+      "name": "Tạp chí điện tử Luật sư Việt Nam",
+      "selectors": {
+        "title": "#title h1",
+        "excerpt": "h2.descrep",
+        "content": ".edittor-content.box-cont",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".news-tab"
+      }
+    },
+    {
+      "domain": "moitruonggiaothong.vn",
+      "name": "Tạp chí Môi trường Giao thông",
+      "selectors": {
+        "title": ".title-detail h1",
+        "excerpt": ".sapo_detail",
+        "content": ".details__content",
+        "date": ".post-time",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".link-source-name, .link-source-detail, .sourcelinktop, .box_bg_white"
+      }
+    },
+    {
+      "domain": "sohuutritue.net.vn",
+      "name": "Tạp chí Sở hữu trí tuệ và Sáng tạo",
+      "selectors": {
+        "title": "h1.title_news",
+        "excerpt": ".content_detail_border > .sapo",
+        "content": ".content_detail",
+        "date": ".signatureandtime",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".source_link, .desktopjszone, #tab_barscroll, #append_cate, .diff_news_list, .tag-list"
+      }
+    },
+    {
+      "domain": "abei.gov.vn",
+      "name": "Cục Phát thanh, truyền hình và thông tin điện tử",
+      "selectors": {
+        "title": "#news-detail h3.title",
+        "content": "#news-detail .content",
+        "date": "#news-detail p.time",
+        "avatar": "meta[property=\"og:image\"], #news-detail .content img",
+        "exclude": "#relate-news, .news-source, #social-icon, .cate-info"
+      }
+    },
+    {
+      "domain": "bvhttdl.gov.vn",
+      "name": "Cổng TTĐT Bộ Văn hóa, Thể thao và Du lịch",
+      "selectors": {
+        "title": ".title-article",
+        "excerpt": ".descriptive-article",
+        "content": ".article-content",
+        "date": ".time-create",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".same-category, .author-box"
+      }
+    },
+    {
+      "domain": "timc.vn",
+      "name": "Trung tâm Thông tin (TIMC)",
+      "selectors": {
+        "title": "h1.ndetail-title",
+        "content": ".page-content",
+        "date": ".ndetail-date",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": ".related-product-item, .comment-wrap"
       }
     }
   ]
