@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-04T00:30:00Z",
+  "updated_at": "2026-09-16T00:00:00Z",
   "sites": [
     {
       "domain": "tuoitre.vn",
@@ -293,6 +293,31 @@
         "date": ".ndetail-date",
         "avatar": "meta[property=\"og:image\"]",
         "exclude": ".related-product-item, .comment-wrap"
+      }
+    },
+    {
+      "domain": "game.gov.vn",
+      "name": "Cổng thông tin chính thức về Game Online (game.gov.vn)",
+      "note": "Thân bài bị chia thành nhiều khối div.prose-vn ngang hàng với h1/byline/sapo, crawler chỉ lấy 1 node cho content ⇒ content = cả <article>. Title/author/date/excerpt lấy đúng bằng CSS, nhưng đầu content còn dính tiêu đề + 'Tác giả… giờ đăng… lượt xem' + sapo, editor cần xoá tay. Xem README § Known issues.",
+      "selectors": {
+        "title": "main article > h1",
+        "excerpt": "main article > h1 ~ p.text-lg",
+        "content": "main article",
+        "author": "main article > h1 + div > span:first-child > b",
+        "date": "main article > h1 + div > span.inline-flex",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "main article > nav, main article > span.chip, main article > div.border-b, main article > div.border-t, main article > section, main article > div.my-6"
+      }
+    },
+    {
+      "domain": "kol.gov.vn",
+      "name": "Cổng thông tin nhà sáng tạo nội dung số (kol.gov.vn)",
+      "selectors": {
+        "title": "main article h1",
+        "excerpt": "main article h1 + div + p",
+        "content": "main article [class*=\"post-content_content\"]",
+        "date": "main article h1 + div > span:first-child",
+        "avatar": "meta[property=\"og:image\"]"
       }
     }
   ]

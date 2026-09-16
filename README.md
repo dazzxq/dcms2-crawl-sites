@@ -111,6 +111,8 @@ Cột **STT** giữ nguyên số thứ tự trong văn bản gốc để đối 
 | 21 | abei.gov.vn | Cục Phát thanh, truyền hình và thông tin điện tử | ✅ 3 URL |
 | 22 | bvhttdl.gov.vn | Cổng TTĐT Bộ VHTTDL | ✅ 3 URL |
 | 23 | timc.vn | Trung tâm Thông tin (TIMC) | ✅ 3 URL |
+| — | game.gov.vn | Cổng thông tin chính thức về Game Online | ⚠️ 9 URL — field đúng, đầu content dính header, xem *Known issues* |
+| — | kol.gov.vn | Cổng thông tin nhà sáng tạo nội dung số | ✅ 9 URL |
 
 ## Ghi chú thiết kế selector
 
@@ -157,6 +159,25 @@ Toàn bộ selector trong file đã được gate qua `GenericTranslator().css_t
   `cleanContent()` unwrap `<em>` trước khi `detectCaption()` chạy, nên caption không gắn được
   vào `dcms-object`; chữ vẫn còn trong body dưới dạng text thường.
 - **abei.gov.vn** — không có `og:image`, `avatar` fallback sang ảnh đầu tiên trong bài.
+- **game.gov.vn** — ⚠️ **content dính header bài.** Trong `main article`, thân bài bị Next.js render thành
+  N khối `div.prose-vn` *ngang hàng* với `h1` / byline / sapo (giữa các khối là `div.my-6` rỗng).
+  `extractWithSelectors()` chỉ lấy `->first()->html()` nên không có selector nào gom đủ các khối.
+  Đã cân nhắc 3 hướng (debate với Codex, đồng thuận):
+  - `content: .prose-vn` → **mất ngầm** phần thân thứ 2 trở đi ⇒ loại.
+  - `content: main article` + exclude cả `h1`/byline/sapo → content sạch nhưng site không có JSON-LD,
+    OG cho `excerpt` bị cắt "…" (hoặc là câu giới thiệu chung của portal), `meta[name=author]` là tên portal
+    (editor tự thêm làm tác giả bài), `date` = null ⇒ **sai ngầm** ⇒ loại.
+  - **Đang dùng:** `content: main article`, chỉ exclude breadcrumb/chip/share/khối rỗng/tin cùng chuyên mục.
+    title/excerpt/author/date lấy đúng bằng CSS; đổi lại đầu content còn *tiêu đề + "Tác giả: … giờ đăng … lượt xem" + sapo*,
+    editor phải xoá tay sau khi crawl. `.source-note` ("Nguồn: …") cuối bài được giữ nguyên.
+  Fix triệt để phải vá DCMS2, ví dụ: option cho `content` nối HTML của *mọi* node match, hoặc chạy `exclude`
+  trên bản clone chỉ dùng cho content (sau khi đã extract các field metadata).
+  Thêm: giờ hiển thị trong byline SSR là giờ **UTC** (khớp `article:published_time` có hậu tố `Z`), chậm 7 tiếng so với giờ VN.
+- **kol.gov.vn** — `content` trỏ class CSS-module có hash (`post-content_content__yKTZY`) nên dùng
+  `[class*="post-content_content"]` để không vỡ khi site build lại. Bài không có sapo thì `excerpt` rơi xuống
+  `og:description` (một số bài là đoạn đầu thân bài bị cắt "…"). Bài chỉ có infographic (vd *Bộ quy tắc ứng xử…*) cho content toàn ảnh, 0 ký tự text.
+  `date` dạng `dd/mm/yyyy`: màn preview "Test crawl" format bằng `Carbon::parse()` vốn hiểu `11/09/2026` là 9/11 —
+  lỗi có sẵn của DCMS2 (chỉ ảnh hưởng hiển thị preview, editor không dùng field `date`).
 - **moitruonggiaothong.vn** — node byline gộp cả tên tác giả lẫn giờ đăng
   (`Đỗ Khuyễn - 07:15 15/06/2026 GMT+7`), không tách được ⇒ bỏ key `author`.
 
