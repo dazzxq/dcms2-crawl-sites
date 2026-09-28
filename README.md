@@ -190,7 +190,8 @@ Toàn bộ selector trong file đã được gate qua `GenericTranslator().css_t
     Selector `> p[style*="right"]:last-of-type` sai ~20% mẫu: dòng chức danh (*"Nguyên Tổng cục trưởng…"* khi tác
     giả 2 dòng), nguồn (*"Theo TTXVN"*, *"Chinhphu.vn"*, *"(Thuế thành phố Hà Nội)"*) hoặc `<p><b><br></b></p>` rỗng
     ⇒ sai ngầm ⇒ loại. Byline vẫn nằm cuối `content` cho editor. Tier 2/3 cho author là placeholder
-    (JSON-LD `"Ban biên tập"` / rỗng, `meta[name=author]` = tên miền) nên `author_ignore` lọc về `null`.
+    (JSON-LD `"Ban biên tập"` / rỗng, `meta[name=author]` = tên miền) nên `author_ignore` lọc bỏ, và DCMS2 (từ
+    `aec27d06`) điền mặc định `"PV"` khi không có tác giả.
   - **Không có key `date`**: `p.days` của xaydungchinhsach dạng `dd/mm/yyyy` (dính lỗi `Carbon::parse()` như kol.gov.vn),
     còn baochinhphu có icon SVG chen giữa ngày và giờ ⇒ để tier 2 lấy `datePublished` ISO +07:00 (khớp giờ hiển thị).
   - `excerpt` giữ nguyên tiền tố *"(Chinhphu.vn) - "* của sapo.
@@ -210,7 +211,8 @@ Toàn bộ selector trong file đã được gate qua `GenericTranslator().css_t
 > `image_caption` (chỉ áp dụng khi ảnh nằm trong `<figure>`).
 >
 > `ArticleCrawlerService` còn đọc `author_ignore`: danh sách tên (phân tách bằng dấu phẩy, so khớp nguyên chuỗi,
-> không phân biệt hoa thường) — author extract ra trùng một mục trong list thì bị bỏ (`null`), áp dụng cho cả 3 tier.
+> không phân biệt hoa thường) — author extract ra trùng một mục trong list thì bị bỏ, áp dụng cho cả 3 tier.
+> Từ dcms2 `aec27d06`, author rỗng (không extract được hoặc bị lọc) được điền mặc định `"PV"`.
 > Form admin (`dcms-crawl-sites.js`) chỉ gửi các field nó biết ⇒ bấm **Lưu** trên UI sẽ làm mất key này (bấm lại
 > "Đồng bộ với upstream" để khôi phục), và **"Test crawl"** trên UI cũng không áp dụng nó — preview sẽ hiện author
-> placeholder dù crawl thật trả `null`.
+> placeholder dù crawl thật trả `"PV"`.
