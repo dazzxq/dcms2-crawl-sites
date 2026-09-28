@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-16T00:00:00Z",
+  "updated_at": "2026-09-28T00:00:00Z",
   "sites": [
     {
       "domain": "tuoitre.vn",
@@ -318,6 +318,32 @@
         "content": "main article [class*=\"post-content_content\"]",
         "date": "main article h1 + div > span:first-child",
         "avatar": "meta[property=\"og:image\"]"
+      }
+    },
+    {
+      "domain": "baochinhphu.vn",
+      "name": "Báo Điện tử Chính phủ",
+      "note": "Không có key author/date có chủ đích: byline nằm ở <p> căn phải cuối body và không ổn định (có khi là chức danh, 'Theo TTXVN', '(Thuế TP Hà Nội)' hoặc <br> rỗng) nên để trong content; author tier 2/3 là placeholder ('Ban biên tập' / tên miền) → author_ignore trả về null. date lấy datePublished ISO từ JSON-LD. Xem README § Known issues.",
+      "selectors": {
+        "title": "h1[data-role=\"title\"]",
+        "excerpt": "[data-role=\"sapo\"]",
+        "content": "[data-role=\"content\"]",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "[data-role=\"content\"] [type=\"RelatedNewsBox\"], [data-role=\"content\"] .rennab",
+        "author_ignore": "Ban biên tập, baochinhphu.vn, xaydungchinhsach.chinhphu.vn, vpcp.chinhphu.vn"
+      }
+    },
+    {
+      "domain": "xaydungchinhsach.chinhphu.vn",
+      "name": "Chuyên trang Xây dựng chính sách, pháp luật (Báo Điện tử Chính phủ)",
+      "note": "Không có key author/date có chủ đích: byline nằm ở <p> căn phải cuối body và không ổn định (có khi là chức danh, 'Theo TTXVN', '(Thuế TP Hà Nội)' hoặc <br> rỗng) nên để trong content; author tier 2/3 là placeholder ('Ban biên tập' / tên miền) → author_ignore trả về null. date lấy datePublished ISO từ JSON-LD. Xem README § Known issues.",
+      "selectors": {
+        "title": "h1[data-role=\"title\"]",
+        "excerpt": "[data-role=\"sapo\"]",
+        "content": "[data-role=\"content\"]",
+        "avatar": "meta[property=\"og:image\"]",
+        "exclude": "[data-role=\"content\"] [type=\"RelatedNewsBox\"], [data-role=\"content\"] .rennab",
+        "author_ignore": "Ban biên tập, baochinhphu.vn, xaydungchinhsach.chinhphu.vn, vpcp.chinhphu.vn"
       }
     }
   ]

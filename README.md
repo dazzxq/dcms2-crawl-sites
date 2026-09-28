@@ -113,6 +113,8 @@ Cột **STT** giữ nguyên số thứ tự trong văn bản gốc để đối 
 | 23 | timc.vn | Trung tâm Thông tin (TIMC) | ✅ 3 URL |
 | — | game.gov.vn | Cổng thông tin chính thức về Game Online | ⚠️ 9 URL — field đúng, đầu content dính header, xem *Known issues* |
 | — | kol.gov.vn | Cổng thông tin nhà sáng tạo nội dung số | ✅ 9 URL |
+| — | baochinhphu.vn | Báo Điện tử Chính phủ | ✅ 45 URL (2014–2026) — không có `author`, xem *Known issues* |
+| — | xaydungchinhsach.chinhphu.vn | Chuyên trang Xây dựng chính sách, pháp luật | ✅ 40 URL — không có `author`, xem *Known issues* |
 
 ## Ghi chú thiết kế selector
 
@@ -178,6 +180,22 @@ Toàn bộ selector trong file đã được gate qua `GenericTranslator().css_t
   `og:description` (một số bài là đoạn đầu thân bài bị cắt "…"). Bài chỉ có infographic (vd *Bộ quy tắc ứng xử…*) cho content toàn ảnh, 0 ký tự text.
   `date` dạng `dd/mm/yyyy`: màn preview "Test crawl" format bằng `Carbon::parse()` vốn hiểu `11/09/2026` là 9/11 —
   lỗi có sẵn của DCMS2 (chỉ ảnh hưởng hiển thị preview, editor không dùng field `date`).
+- **baochinhphu.vn / xaydungchinhsach.chinhphu.vn** — cùng một CMS, dùng chung bộ selector theo thuộc tính
+  `data-role` (`title` / `sapo` / `content`) — ổn định hơn class vì 2 site trộn 3 template detail
+  (`detail__pflex`, `detail__sticky`, `detail__content`), và xaydungchinhsach còn phục vụ lại bài của baochinhphu
+  (ID `1022…`) bằng template baochinhphu. Verify 85 URL thật qua `ArticleCrawlerService::extract()`
+  (80 mẫu ngẫu nhiên từ RSS + chuyên mục, 40/site, thêm 5 bài cũ 2014–2021 của baochinhphu): 85/85 đủ title/excerpt/content/avatar/date,
+  0 box tin liên quan sót lại.
+  - **Không có key `author` (cố ý).** Byline là `<p style="text-align: right">` cuối body, không có node riêng.
+    Selector `> p[style*="right"]:last-of-type` sai ~20% mẫu: dòng chức danh (*"Nguyên Tổng cục trưởng…"* khi tác
+    giả 2 dòng), nguồn (*"Theo TTXVN"*, *"Chinhphu.vn"*, *"(Thuế thành phố Hà Nội)"*) hoặc `<p><b><br></b></p>` rỗng
+    ⇒ sai ngầm ⇒ loại. Byline vẫn nằm cuối `content` cho editor. Tier 2/3 cho author là placeholder
+    (JSON-LD `"Ban biên tập"` / rỗng, `meta[name=author]` = tên miền) nên `author_ignore` lọc về `null`.
+  - **Không có key `date`**: `p.days` của xaydungchinhsach dạng `dd/mm/yyyy` (dính lỗi `Carbon::parse()` như kol.gov.vn),
+    còn baochinhphu có icon SVG chen giữa ngày và giờ ⇒ để tier 2 lấy `datePublished` ISO +07:00 (khớp giờ hiển thị).
+  - `excerpt` giữ nguyên tiền tố *"(Chinhphu.vn) - "* của sapo.
+  - Khối video (`[type="VideoStream"]`) chỉ còn lại caption; link *"TOÀN VĂN …"* tới PDF văn bản bị unwrap thành
+    text do `cleanContent()` mặc định bỏ `<a>` (hành vi chung của DCMS2, không riêng site này).
 - **moitruonggiaothong.vn** — node byline gộp cả tên tác giả lẫn giờ đăng
   (`Đỗ Khuyễn - 07:15 15/06/2026 GMT+7`), không tách được ⇒ bỏ key `author`.
 
@@ -190,3 +208,9 @@ Toàn bộ selector trong file đã được gate qua `GenericTranslator().css_t
 > `selectors` còn nhận thêm 2 key mà `CrawlSiteService` validate nhưng README v1 chưa ghi:
 > `avatar` (featured image — hỗ trợ `<img>`, `<meta>`, hoặc element bọc ảnh) và
 > `image_caption` (chỉ áp dụng khi ảnh nằm trong `<figure>`).
+>
+> `ArticleCrawlerService` còn đọc `author_ignore`: danh sách tên (phân tách bằng dấu phẩy, so khớp nguyên chuỗi,
+> không phân biệt hoa thường) — author extract ra trùng một mục trong list thì bị bỏ (`null`), áp dụng cho cả 3 tier.
+> Form admin (`dcms-crawl-sites.js`) chỉ gửi các field nó biết ⇒ bấm **Lưu** trên UI sẽ làm mất key này (bấm lại
+> "Đồng bộ với upstream" để khôi phục), và **"Test crawl"** trên UI cũng không áp dụng nó — preview sẽ hiện author
+> placeholder dù crawl thật trả `null`.
