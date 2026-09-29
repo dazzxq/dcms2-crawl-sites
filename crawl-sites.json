@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-28T00:00:00Z",
+  "updated_at": "2026-09-29T22:05:31Z",
   "sites": [
     {
       "domain": "tuoitre.vn",
@@ -344,6 +344,51 @@
         "avatar": "meta[property=\"og:image\"]",
         "exclude": "[data-role=\"content\"] [type=\"RelatedNewsBox\"], [data-role=\"content\"] .rennab",
         "author_ignore": "Ban biên tập, baochinhphu.vn, xaydungchinhsach.chinhphu.vn, vpcp.chinhphu.vn"
+      }
+    },
+    {
+      "domain": "znews.vn",
+      "name": "Znews (main domain)",
+      "selectors": {
+        "title": "h1.the-article-title",
+        "excerpt": "p.the-article-summary",
+        "content": "div.the-article-body",
+        "author": ".the-article-credit, .author",
+        "date": "span.article-publish",
+        "avatar": "meta[property=\"og:image\"]",
+        "image_wrapper": "table.picture",
+        "image_caption": "td.pCaption",
+        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
+      }
+    },
+    {
+      "domain": "lifestyle.zingnews.vn",
+      "name": "Znews - Lifestyle",
+      "selectors": {
+        "title": "h1.the-article-title",
+        "excerpt": "p.the-article-summary",
+        "content": "div.the-article-body",
+        "author": ".the-article-credit, .author",
+        "date": "span.article-publish",
+        "avatar": "meta[property=\"og:image\"]",
+        "image_wrapper": "table.picture",
+        "image_caption": "td.pCaption",
+        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
+      }
+    },
+    {
+      "domain": "tech.zingnews.vn",
+      "name": "Znews - Tech",
+      "selectors": {
+        "title": "h1.the-article-title",
+        "excerpt": "p.the-article-summary",
+        "content": "div.the-article-body",
+        "author": ".the-article-credit, .author",
+        "date": "span.article-publish",
+        "avatar": "meta[property=\"og:image\"]",
+        "image_wrapper": "table.picture",
+        "image_caption": "td.pCaption",
+        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
       }
     }
   ]
