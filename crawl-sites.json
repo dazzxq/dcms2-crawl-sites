@@ -358,7 +358,7 @@
         "avatar": "meta[property=\"og:image\"]",
         "image_wrapper": "table.picture",
         "image_caption": "td.pCaption",
-        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
+        "exclude": ".notebox, .znews-banner, table.article, #innerarticle, .the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
       }
     },
     {
@@ -373,7 +373,7 @@
         "avatar": "meta[property=\"og:image\"]",
         "image_wrapper": "table.picture",
         "image_caption": "td.pCaption",
-        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
+        "exclude": ".notebox, .znews-banner, table.article, #innerarticle, .the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
       }
     },
     {
@@ -388,7 +388,7 @@
         "avatar": "meta[property=\"og:image\"]",
         "image_wrapper": "table.picture",
         "image_caption": "td.pCaption",
-        "exclude": ".the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
+        "exclude": ".notebox, .znews-banner, table.article, #innerarticle, .the-article-body-related, .the-article-body-topic, .the-article-body-embed, .the-article-body-notification, .the-article-body-inline"
       }
     }
   ]
