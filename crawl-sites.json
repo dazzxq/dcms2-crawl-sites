@@ -348,7 +348,7 @@
     },
     {
       "domain": "znews.vn",
-      "name": "Znews (main domain)",
+      "name": "Znews",
       "selectors": {
         "title": "h1.the-article-title",
         "excerpt": "p.the-article-summary",
